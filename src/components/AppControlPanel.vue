@@ -6,6 +6,8 @@
             p.control-panel__btn.control-panel__btn--heal(@click="heal") HEAL
             p.control-panel__btn.control-panel__btn--give-up(@click="giveUp") GIVE UP
         div.control-panel__init(v-else)
+            p(v-if="isGameWon") you won
+            p(v-if="isGameLost") you lost
             p.control-panel__btn.control-panel__btn--new-game(@click="startNewGame") START NEW GAME
 </template>
 
@@ -18,6 +20,8 @@ export default {
     data() {
         return {
             isNewGameStarted: false,
+            isGameWon: false,
+            isGameLost: false
         }
     },
 
@@ -25,6 +29,8 @@ export default {
         startNewGame() {
             bus.startNewGame()
             this.isNewGameStarted = true
+            this.isGameWon = false
+            this.isGameLost = false
         },
         attack() {
             bus.dealDamage()
@@ -37,8 +43,20 @@ export default {
         },
         giveUp() {
             bus.$emit('gameWasLost')
-            this.isNewGameStarted = false
         }
+    },
+
+    mounted() {
+        bus.$on('gameWasLost', () => {
+            this.isNewGameStarted = false
+            this.isGameWon = false
+            this.isGameLost = true
+        })
+        bus.$on('gameWasWon', () => {
+            this.isNewGameStarted = false
+            this.isGameWon = true
+            this.isGameLost = false
+        })
     }
 }
 </script>

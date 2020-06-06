@@ -18,11 +18,14 @@ export default {
     mounted() {
         if (this.isUser) {
             this.health = bus.userHP
-            bus.$on('userHPChanged', health => this.health = health)
+            bus.$on('userHPChanged', data => this.health = data.hp)
         } else {
             this.health = bus.monsterHP
-            bus.$on('monsterHPChanged', health => this.health = health)
-            setInterval(() => bus.takeDamage(), 1000)
+            bus.$on('monsterHPChanged', data => this.health = data.hp)
+            setInterval(() => {
+                if (bus.userHP > 0 && bus.monsterHP > 0)
+                    bus.takeDamage()
+            }, 1000)
         }
     }
 }

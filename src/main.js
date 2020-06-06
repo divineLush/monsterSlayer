@@ -22,17 +22,17 @@ export const bus = new Vue({
       this.monsterAttackDamage = 7
     },
     takeDamage() {
-      if (this.userHP - this.monsterAttackDamage > 0)
+      if (this.userHP - this.monsterAttackDamage > 0) 
         this.userHP -= this.monsterAttackDamage
       else {
         this.userHP = 0
         this.$emit('gameWasLost')
       }
-      this.$emit('userHPChanged', this.userHP)
+      this.$emit('userHPChanged', { hp: this.userHP, diff: -this.monsterAttackDamage })
     },
     heal() {
       this.userHP += this.healAmount
-      this.$emit('userHPChanged', this.userHP)
+      this.$emit('userHPChanged', { hp: this.userHP, diff: this.healAmount })
     },
     handleMonsterDamage(damage) {
       if (this.monsterHP - damage > 0)
@@ -44,11 +44,11 @@ export const bus = new Vue({
     },
     dealDamage() {
       this.handleMonsterDamage(this.attackDamage)
-      this.$emit('monsterHPChanged', this.monsterHP)
+      this.$emit('monsterHPChanged', { hp: this.monsterHP, diff: this.attackDamage })
     },
     dealSpecialDamage() {
       this.handleMonsterDamage(this.specialAttackDamage)
-      this.$emit('monsterHPChanged', this.monsterHP)
+      this.$emit('monsterHPChanged', { hp: this.monsterHP, diff: this.specialAttackDamage })
     }
   }
 })

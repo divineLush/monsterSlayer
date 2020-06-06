@@ -1,13 +1,13 @@
 <template lang="pug">
     div.control-panel
         div.control-panel__full(v-if="isNewGameStarted")
-            p.control-panel__btn.control-panel__btn--attack(@click="attack") ATTACK
-            p.control-panel__btn.control-panel__btn--special-attack(@click="specialAttack") SPECIAL ATTACK
-            p.control-panel__btn.control-panel__btn--heal(@click="heal") HEAL
-            p.control-panel__btn.control-panel__btn--give-up(@click="giveUp") GIVE UP
+            p.control-panel__btn(@click="attack") ATTACK
+            p.control-panel__btn(@click="specialAttack") SPECIAL ATTACK
+            p.control-panel__btn(@click="heal") HEAL
+            p.control-panel__btn(@click="giveUp") GIVE UP
         div.control-panel__init(v-else)
-            p(v-if="isGameWon") you won
-            p(v-if="isGameLost") you lost
+            p.control-panel__init__message(v-if="isGameWon") YOU WON
+            p.control-panel__init__message(v-if="isGameLost") YOU LOST
             p.control-panel__btn.control-panel__btn--new-game(@click="startNewGame") START NEW GAME
 </template>
 
@@ -69,19 +69,22 @@ export default {
 
         &__init
             display flex
-            justify-content center
+            flex-direction column
+            align-items center
+            &__message
+                color #5dfbc1
+                font-weight bold
 
         &__btn
             cursor pointer
-            &--attack
-                background-color red
+            border 4px solid #c5c5ff
+            padding 7px
 
-            &--special-attack
-                background-color blue
+            &:hover
+                background-color #d0feed
+                color #00005b
 
-            &--heal
-                background-color green
-
-            &--give-up
-                background-color yellow
+            &--new-game:hover
+                background-color #f8f8ff
+                color #00005b
 </style>

@@ -1,6 +1,6 @@
 <template lang="pug">
-    div
-        div(v-for="log in logs")
+    div.log-wrapper
+        div(v-for="log in slicedLogs")
             p {{ log }}
 </template>
 
@@ -13,6 +13,12 @@ export default {
     data() {
         return {
             logs: []
+        }
+    },
+
+    computed: {
+        slicedLogs() {
+            return this.logs.slice(-5)
         }
     },
 
@@ -32,4 +38,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+    .log-wrapper
+        display flex
+        flex-direction column
+        justify-content center
+        align-items center
+        color #ffffc5
 </style>

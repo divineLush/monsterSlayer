@@ -1,6 +1,6 @@
 <template lang="pug">
   div#app
-    template(v-if="isNewGameStarted")
+    div.health-bar-wrapper(v-if="isNewGameStarted")
       HealthBar(:isUser="true")
       HealthBar(:isUser="false")
     AppControlPanel
@@ -29,9 +29,28 @@ export default {
   },
 
   mounted() {
+    const el = document.body
+    el.style.margin = 0
+    el.style.padding = 0
+    el.style.height = '100%'
     bus.$on('newGameWasStarted', () => this.isNewGameStarted = true)
     bus.$on('gameWasLost', () => this.isNewGameStarted = false)
     bus.$on('gameWasWon', () => this.isNewGameStarted = false)
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+  #app
+    display flex
+    flex-direction column
+    justify-content space-evenly
+    background-color #000047
+    color #f8f8ff
+    height 100vh
+    font-family monospace
+
+    .health-bar-wrapper
+      display flex
+      justify-content space-around
+</style>

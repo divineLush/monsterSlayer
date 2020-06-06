@@ -23,6 +23,7 @@ export default {
 
     methods: {
         startNewGame() {
+            bus.startNewGame()
             this.isNewGameStarted = true
         },
         attack() {
@@ -35,6 +36,7 @@ export default {
             bus.heal()
         },
         giveUp() {
+            bus.$emit('gameWasLost')
             this.isNewGameStarted = false
         }
     }

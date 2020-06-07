@@ -37,7 +37,6 @@ export default {
     methods: {
         handleEnter() {
             this.startNewGame()
-            console.log('fromPanel')
         },
         startNewGame() {
             bus.startNewGame()
@@ -61,7 +60,6 @@ export default {
 
     created() {
         window.addEventListener('keydown', event => {
-            console.log(event)
             if (this.isNewGameStarted)
                 switch(event.keyCode) {
                     case(38):
@@ -130,6 +128,12 @@ export default {
             border 4px solid #c5c5ff
             padding 7px
             text-align center
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
 
             &:hover
                 background-color #d0feed

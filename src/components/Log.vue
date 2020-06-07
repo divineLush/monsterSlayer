@@ -30,7 +30,10 @@ export default {
             this.logs.push(message)
         })
         bus.$on('monsterHPChanged', data => {
-            this.logs.push(`You dealt ${data.diff} damage`)
+            const message = data.diff > 0
+                ? `Monster healed ${data.diff} hp`
+                : `You dealt ${Math.abs(data.diff)} damage`
+            this.logs.push(message)
         })
         bus.$on('newGameWasStarted', () => this.logs = [])
     }

@@ -8,6 +8,7 @@
 
 <script>
 import { bus } from '../main'
+import { genRandomNumber } from '../assets/utils'
 
 export default {
     name: 'HealthBar',
@@ -39,7 +40,11 @@ export default {
             setInterval(() => {
                 if (bus.userHP > 0 && bus.monsterHP > 0)
                     bus.takeDamage()
-            }, 1000)
+            }, genRandomNumber(450, 600))
+            setInterval(() => {
+                if (bus.monsterHP > 0 && bus.monsterHP > 0)
+                    bus.healMonster()
+            }, genRandomNumber(300, 450))
         }
     }
 }

@@ -19,7 +19,7 @@ export default {
         }
     },
 
-    mounted() {
+    created() {
         if (this.isUser) {
             this.health = bus.userHP
             this.title = 'You'

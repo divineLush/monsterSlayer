@@ -38,6 +38,16 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+    .fade-enter
+        opacity 0
+
+    .fade-enter-active
+        transition opacity 1s
+
+    .fade-leave-active
+        transition opacity 1s
+        opacity 0
+
     .log-wrapper
         display flex
         flex-direction column

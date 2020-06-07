@@ -3,7 +3,7 @@
     div.health-bar-wrapper(v-if="isNewGameStarted")
       HealthBar(:isUser="true")
       HealthBar(:isUser="false")
-    AppControlPanel
+    AppControlPanel(ref="panel")
     Log
 </template>
 
@@ -28,7 +28,7 @@ export default {
     }
   },
 
-  mounted() {
+  created() {
     const el = document.body
     el.style.margin = 0
     el.style.padding = 0

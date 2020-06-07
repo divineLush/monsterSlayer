@@ -31,8 +31,10 @@ export const bus = new Vue({
       this.$emit('userHPChanged', { hp: this.userHP, diff: -this.monsterAttackDamage })
     },
     heal() {
-      this.userHP += this.healAmount
-      this.$emit('userHPChanged', { hp: this.userHP, diff: this.healAmount })
+      if (this.userHP + this.healAmount <= 100) {
+        this.userHP += this.healAmount
+        this.$emit('userHPChanged', { hp: this.userHP, diff: this.healAmount })
+      }
     },
     handleMonsterDamage(damage) {
       if (this.monsterHP - damage > 0)

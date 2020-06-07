@@ -28,10 +28,10 @@ export default {
             this.health = bus.monsterHP
             this.title = 'Monster'
             bus.$on('monsterHPChanged', data => this.health = data.hp)
-            setInterval(() => {
-                if (bus.userHP > 0 && bus.monsterHP > 0)
-                    bus.takeDamage()
-            }, 1000)
+            // setInterval(() => {
+            //     if (bus.userHP > 0 && bus.monsterHP > 0)
+            //         bus.takeDamage()
+            // }, 1000)
         }
     }
 }
@@ -44,4 +44,5 @@ export default {
         justify-content center
         align-items center
         color #ffffc5
+        height 30vh
 </style>

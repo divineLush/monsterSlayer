@@ -1,10 +1,12 @@
 <template lang="pug">
   div#app
-    div.health-bar-wrapper(v-if="isNewGameStarted")
-      HealthBar(:isUser="true")
-      HealthBar(:isUser="false")
+    transition(name="fade")
+      div.health-bar-wrapper(v-if="isNewGameStarted")
+        HealthBar(:isUser="true")
+        HealthBar(:isUser="false")
     AppControlPanel(ref="panel")
-    Log
+    transition(name="fade")
+      Log(v-if="isNewGameStarted")
 </template>
 
 <script>
@@ -41,10 +43,21 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  .fade-enter
+    opacity 0
+
+  .fade-enter-active
+    transition opacity 2s
+
+  .fade-leave-active
+    transition opacity 2s
+    opacity 0
+
   #app
     display flex
+    justify-content center
+    align-items center
     flex-direction column
-    justify-content space-evenly
     background-color #000047
     color #f8f8ff
     height 100vh
@@ -52,5 +65,6 @@ export default {
 
     .health-bar-wrapper
       display flex
+      width 100%
       justify-content space-around
 </style>

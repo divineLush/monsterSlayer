@@ -13,7 +13,7 @@
   "homepage": "https://divineLush.github.io/monsterslayer",
   "dependencies": {
     "gh-pages": "^3.0.0",
-    "pug": "^3.0.0",
+    "pug": "^3.0.1",
     "vue": "^2.5.11"
   },
   "browserslist": [
